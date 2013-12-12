@@ -1,0 +1,40 @@
+%link{rel: 'stylesheet', type: 'text/css', href: '/stylesheet.css', media: "screen, print"}
+
+- @data.in_groups_of(8,false).each do |backers|
+  %table.labels
+    %tbody
+      - backers.in_groups_of(2,false).each do |backers|
+        %tr
+          - backers.each do |backer|
+            %td.label
+              %table.from
+                %tr
+                  %td.thing From:
+                  %td Ardent Heavy Industries
+                %tr
+                  %td
+                  %td 985 Howard St
+                %tr
+                  %td
+                  %td San Francisco, CA 94103
+              %table.to
+                %tr
+                  %td.thing To:
+                  %td #{backer['Backer Name']}
+                %tr
+                  %td
+                  %td #{backer['Line_1']}
+                - if !backer['Line_2'].nil?
+                  %tr
+                    %td
+                    %td #{backer['Line_2']}
+                %tr
+                  %td
+                  %td #{backer['City']}, #{backer['State']} #{backer['Postal Code']}
+                - if backer["Country"] != "United States"
+                  %tr
+                    %td
+                    %td #{backer['Country']}
+      %tr.break
+        %td{colspan: 2}
+          %div{style:"page-break-after:always"}
